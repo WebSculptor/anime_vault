@@ -1,28 +1,30 @@
+import { AnimeCardProp } from "@/app/interface";
 import Image from "next/image";
+import { MotionDiv } from "./MotionDiv";
 
-export interface AnimeProp {
-  id: string;
-  name: string;
-  image: {
-    original: string;
-  };
-  kind: string;
-  episodes: number;
-  episodes_aired: number;
-  score: string;
-}
+const variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
 
-interface Prop {
-  anime: AnimeProp;
-  index: number;
-}
-
-function AnimeCard({ anime }: Prop) {
+function AnimeCard({ anime, index }: AnimeCardProp) {
   return (
-    <div className="max-w-sm rounded relative w-full">
-      <div className="relative w-full h-[37vh]">
+    <MotionDiv
+      className="max-w-sm rounded relative w-full"
+      variants={variants}
+      initial="hidden"
+      animate="visible"
+      viewport={{ amount: 0 }}
+      transition={{
+        delay: index * 0.1,
+        ease: "easeInOut",
+        duration: 0.5,
+      }}
+    >
+      <div className="relative w-full h-[40vh]">
         <Image
-          src={anime.image.original}
+          priority
+          src={`${process.env.NEXT_PUBLIC_ANIME}${anime.image.original}`}
           alt={anime.name}
           fill
           className="rounded-xl"
@@ -64,7 +66,7 @@ function AnimeCard({ anime }: Prop) {
           </div>
         </div>
       </div>
-    </div>
+    </MotionDiv>
   );
 }
 
