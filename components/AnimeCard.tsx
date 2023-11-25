@@ -16,7 +16,7 @@ function AnimeCard({ anime, index }: AnimeCardProp) {
       animate="visible"
       viewport={{ amount: 0 }}
       transition={{
-        delay: index * 0.1,
+        delay: index * 0.25,
         ease: "easeInOut",
         duration: 0.5,
       }}
