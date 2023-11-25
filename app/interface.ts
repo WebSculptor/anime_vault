@@ -4,6 +4,7 @@ export interface AnimeProp {
   image: {
     original: string;
   };
+  url: string;
   kind: string;
   episodes: number;
   episodes_aired: number;

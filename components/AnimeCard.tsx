@@ -1,6 +1,7 @@
 import { AnimeCardProp } from "@/app/interface";
 import Image from "next/image";
 import { MotionDiv } from "./MotionDiv";
+import Link from "next/link";
 
 const variants = {
   hidden: { opacity: 0 },
@@ -32,9 +33,14 @@ function AnimeCard({ anime, index }: AnimeCardProp) {
       </div>
       <div className="py-4 flex flex-col gap-3">
         <div className="flex justify-between items-center gap-1">
-          <h2 className="font-bold text-white text-xl line-clamp-1 w-full">
-            {anime.name}
-          </h2>
+          <Link
+            href={`${process.env.NEXT_PUBLIC_ANIME}${anime.url}`}
+            target="_blank"
+          >
+            <h2 className="font-bold text-white text-xl line-clamp-1 w-full">
+              {anime.name}
+            </h2>
+          </Link>
           <div className="py-1 px-2 bg-[#161921] rounded-sm">
             <p className="text-white text-sm font-bold capitalize">
               {anime.kind}
